@@ -5,447 +5,921 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarang Consulting Services</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔷</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --navy: #0c1d36;
+            --blue: #1a3a5c;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --border: #e2e8f0;
+            --radius: 12px;
         }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
-        
+
+        /* NAV */
         nav {
-            background: #0f1f3d;
-            padding: 15px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 16px 0;
+            transition: all 0.3s;
+            background: transparent;
         }
-        
-        nav .container {
-            max-width: 1200px;
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        nav .wrap {
+            max-width: 1120px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         nav .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
             color: white;
-            font-size: 1.3em;
-            font-weight: bold;
+            letter-spacing: -0.02em;
+            transition: color 0.3s;
         }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-        
+
+        nav.scrolled .logo { color: var(--navy); }
+
+        nav ul { list-style: none; display: flex; gap: 32px; }
+
         nav a {
-            color: white;
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
             transition: color 0.3s;
             cursor: pointer;
         }
-        
-        nav a:hover {
-            color: #4a9eff;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-            animation: fadeIn 1s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        header h1 {
-            font-size: 2.8em;
-            margin-bottom: 15px;
-            animation: slideDown 0.8s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        header p {
-            font-size: 1.3em;
-            opacity: 0.95;
-            animation: slideUp 0.8s ease-out 0.2s backwards;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .cta-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 40px;
-            background: white;
-            color: #1e3c72;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s;
-            animation: slideUp 0.8s ease-out 0.4s backwards;
-        }
-        
-        .cta-button:hover {
-            background: #4a9eff;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        section {
-            padding: 80px 20px;
-            min-height: 400px;
-        }
-        
-        section h2 {
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            color: #1e3c72;
-            text-align: center;
-        }
-        
-        .about {
-            background: #f8f9fa;
-        }
-        
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .about-content p {
-            font-size: 1.15em;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .service-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        
-        .tab-button {
-            padding: 12px 25px;
-            background: #e9ecef;
+
+        nav.scrolled a { color: var(--text-light); }
+        nav a:hover { color: var(--accent-light); }
+        nav.scrolled a:hover { color: var(--accent); }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
             border: none;
-            border-radius: 25px;
             cursor: pointer;
-            font-size: 1em;
+            padding: 4px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            margin: 5px 0;
             transition: all 0.3s;
+        }
+
+        nav.scrolled .mobile-toggle span { background: var(--navy); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(160deg, #0c1d36 0%, #162d50 40%, #1a3a5c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(59,130,246,0.15);
+            border: 1px solid rgba(59,130,246,0.25);
+            border-radius: 100px;
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700;
+            color: white;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 540px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59,130,246,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* SECTIONS */
+        section { padding: 100px 24px; }
+        .wrap { max-width: 1120px; margin: 0 auto; }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        /* ABOUT */
+        .about { background: var(--bg-alt); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .stat h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .stat span {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
             font-weight: 500;
         }
-        
-        .tab-button:hover {
-            background: #dee2e6;
-            transform: translateY(-2px);
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-        
-        .tab-button.active {
-            background: #1e3c72;
-            color: white;
-        }
-        
-        .service-content {
-            display: none;
-            animation: fadeInUp 0.5s ease-out;
-        }
-        
-        .service-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .service-detail {
+
+        .highlight-card {
+            padding: 24px;
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 800px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .highlight-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(59,130,246,0.08);
+        }
+
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(59,130,246,0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .highlight-card h4 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .highlight-card p {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* SERVICES */
+        .services-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .services-header .section-sub {
             margin: 0 auto;
         }
-        
-        .service-detail h3 {
-            color: #1e3c72;
-            font-size: 1.8em;
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: all 0.3s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(59,130,246,0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
             margin-bottom: 20px;
         }
-        
-        .service-detail p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 1.1em;
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 10px;
         }
-        
-        .service-detail ul {
+
+        .service-card > p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .service-list {
             list-style: none;
             padding: 0;
         }
-        
-        .service-detail li {
-            padding: 12px 0;
-            padding-left: 30px;
+
+        .service-list li {
+            font-size: 0.84rem;
+            color: var(--text-light);
+            padding: 5px 0;
+            padding-left: 20px;
             position: relative;
-            font-size: 1.05em;
-            color: #555;
         }
-        
-        .service-detail li:before {
-            content: "✓";
+
+        .service-list li::before {
+            content: '';
             position: absolute;
             left: 0;
-            color: #2a5298;
-            font-weight: bold;
-            font-size: 1.2em;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
         }
-        
-        .contact {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
+
+        /* CONTACT */
+        .contact-section {
+            background: var(--bg-alt);
         }
-        
-        .contact h2 {
-            color: white;
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+            margin-top: 48px;
         }
-        
-        .contact-info {
-            margin-top: 30px;
-            font-size: 1.2em;
+
+        .contact-text p {
+            color: var(--text-light);
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin-bottom: 28px;
         }
-        
-        .contact-info p {
-            margin: 15px 0;
+
+        .contact-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
         }
-        
-        .contact-info a {
-            color: white;
+
+        .contact-card-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(59,130,246,0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-card h4 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 2px;
+        }
+
+        .contact-card p,
+        .contact-card a {
+            font-size: 0.88rem;
+            color: var(--text-light);
             text-decoration: none;
-            border-bottom: 2px solid rgba(255,255,255,0.5);
-            transition: border-color 0.3s;
         }
-        
-        .contact-info a:hover {
-            border-bottom-color: white;
+
+        .contact-card a:hover { color: var(--accent); }
+
+        .contact-form-box {
+            padding: 36px;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
         }
-        
-        footer {
-            background: #0f1f3d;
+
+        .contact-form-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text);
+            transition: border-color 0.2s;
+            background: var(--bg-alt);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
             color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 0.95em;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
         }
-        
-        @media (max-width: 768px) {
-            nav ul {
+
+        .btn-submit:hover {
+            background: #2563eb;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 48px 24px 32px;
+        }
+
+        .footer-content {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        footer p { font-size: 0.82rem; }
+
+        .footer-links { display: flex; gap: 24px; }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .about-grid,
+            .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+
+            .service-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            section { padding: 72px 20px; }
+
+            nav ul { display: none; }
+            nav ul.open {
+                display: flex;
                 flex-direction: column;
-                gap: 15px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 16px 24px;
+                gap: 12px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             }
-            
-            header h1 {
-                font-size: 2em;
-            }
-            
-            .service-tabs {
-                flex-direction: column;
-            }
-            
-            .tab-button {
-                width: 100%;
-            }
+            nav ul.open a { color: var(--text) !important; }
+            .mobile-toggle { display: block; }
+
+            .service-grid { grid-template-columns: 1fr; }
+
+            .form-row { grid-template-columns: 1fr; }
+
+            .stat-row { gap: 24px; }
+            .about-highlights { grid-template-columns: 1fr; }
+
+            .footer-content { flex-direction: column; text-align: center; gap: 20px; }
+        }
+
+        /* ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
+
+    <nav id="nav">
+        <div class="wrap">
             <div class="logo">Tarang</div>
+            <button class="mobile-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
-                <li><a onclick="scrollToSection('home')">Home</a></li>
-                <li><a onclick="scrollToSection('about')">About</a></li>
-                <li><a onclick="scrollToSection('services')">Services</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <header id="home">
-        <h1>Tarang Consulting Services</h1>
-        <p>Global Professional Services & Technology Solutions</p>
-        <a href="#services" class="cta-button" onclick="scrollToSection('services')">Explore Our Services</a>
-    </header>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">Professional Services & Technology Solutions</div>
+            <h1>Scalable Solutions.<br>Global Delivery.</h1>
+            <p>US-based consulting firm delivering technology, spatial data, healthcare, and design coordination services with regulatory discipline and operational excellence.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Our Services &#8594;</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
 
+    <!-- ABOUT -->
     <section class="about" id="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <div class="about-content">
-                <p>Tarang Consulting Services is a US-based professional services company delivering scalable, compliant, and cost-efficient solutions across technology, spatial data, healthcare, and design coordination.</p>
-                <p>We combine local expertise with global delivery capabilities to support complex projects with regulatory discipline and operational excellence. Our remote-first approach enables us to serve clients worldwide while maintaining the highest standards of quality and professionalism.</p>
+        <div class="wrap">
+            <div class="section-label">About Us</div>
+            <div class="section-title">Built for Compliance,<br>Designed for Scale</div>
+            <div class="about-grid">
+                <div class="about-text fade-up">
+                    <p>Tarang Consulting Services is a US-based professional services company delivering scalable, compliant, and cost-efficient solutions across technology, spatial data, healthcare, and design coordination.</p>
+                    <p>We combine local expertise with global delivery capabilities to support complex projects with regulatory discipline and operational excellence. Our remote-first approach enables us to serve clients worldwide while maintaining the highest standards of quality.</p>
+                    <div class="stat-row">
+                        <div class="stat">
+                            <h4>5+</h4>
+                            <span>Service Verticals</span>
+                        </div>
+                        <div class="stat">
+                            <h4>US &amp; India</h4>
+                            <span>Delivery Footprint</span>
+                        </div>
+                        <div class="stat">
+                            <h4>100%</h4>
+                            <span>Compliant Model</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-highlights fade-up">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#127760;</div>
+                        <h4>Global Delivery</h4>
+                        <p>Cross-border model with US client management and India-based execution.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#128203;</div>
+                        <h4>Audit-Ready</h4>
+                        <p>Documentation-driven compliance with clean, auditable financial records.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#9889;</div>
+                        <h4>Remote-First</h4>
+                        <p>Flexible engagement model designed for distributed teams and clients.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">&#128200;</div>
+                        <h4>Scalable</h4>
+                        <p>Structured for growth without requiring structural changes.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            
-            <div class="service-tabs">
-                <button class="tab-button active" onclick="showService('it')">IT Services</button>
-                <button class="tab-button" onclick="showService('gis')">GIS & Spatial Data</button>
-                <button class="tab-button" onclick="showService('design')">Design Coordination</button>
-                <button class="tab-button" onclick="showService('healthcare')">Healthcare</button>
-                <button class="tab-button" onclick="showService('consulting')">Business Consulting</button>
+    <!-- SERVICES -->
+    <section id="services">
+        <div class="wrap">
+            <div class="services-header">
+                <div class="section-label">What We Do</div>
+                <div class="section-title">Our Services</div>
+                <p class="section-sub">Advisory, consulting, and execution-support across multiple technology and professional services verticals.</p>
             </div>
 
-            <div id="it" class="service-content active">
-                <div class="service-detail">
-                    <h3>Information Technology Services</h3>
-                    <p>Comprehensive IT solutions designed to transform your business operations and drive digital innovation.</p>
-                    <ul>
-                        <li>Custom software development and solutions</li>
-                        <li>IT consulting and strategic planning</li>
-                        <li>System integration and implementation</li>
-                        <li>Technology infrastructure support</li>
-                        <li>Digital transformation consulting</li>
-                        <li>Cloud solutions and migration</li>
+            <div class="service-grid">
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#128187;</div>
+                    <h3>Information Technology</h3>
+                    <p>Comprehensive IT solutions to transform operations and drive digital innovation.</p>
+                    <ul class="service-list">
+                        <li>Custom software development</li>
+                        <li>IT consulting &amp; strategic planning</li>
+                        <li>System integration</li>
+                        <li>Cloud solutions &amp; migration</li>
+                        <li>Digital transformation</li>
                     </ul>
                 </div>
-            </div>
 
-            <div id="gis" class="service-content">
-                <div class="service-detail">
-                    <h3>GIS & Spatial Data Services</h3>
-                    <p>Advanced geographic information systems and spatial analysis to unlock location intelligence for your organization.</p>
-                    <ul>
-                        <li>Geographic Information Systems consulting</li>
-                        <li>Spatial data analysis and visualization</li>
-                        <li>Custom GIS application development</li>
-                        <li>Geospatial data management and integration</li>
-                        <li>Mapping and cartography services</li>
-                        <li>Location-based analytics solutions</li>
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#127758;</div>
+                    <h3>GIS &amp; Spatial Data</h3>
+                    <p>Advanced geographic information systems and spatial analysis for location intelligence.</p>
+                    <ul class="service-list">
+                        <li>GIS consulting &amp; analysis</li>
+                        <li>Spatial data visualization</li>
+                        <li>Custom GIS applications</li>
+                        <li>Geospatial data management</li>
+                        <li>Mapping &amp; cartography</li>
                     </ul>
                 </div>
-            </div>
 
-            <div id="design" class="service-content">
-                <div class="service-detail">
-                    <h3>Design Coordination & Drafting</h3>
-                    <p>Professional design support and coordination services to streamline your architectural and engineering projects.</p>
-                    <ul>
-                        <li>Architectural coordination and support</li>
-                        <li>Technical design documentation</li>
-                        <li>CAD drafting and 3D modeling</li>
-                        <li>BIM coordination assistance</li>
-                        <li>Construction document preparation</li>
-                        <li>As-built documentation services</li>
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#128208;</div>
+                    <h3>Design Coordination</h3>
+                    <p>Professional design support for architectural and engineering projects.</p>
+                    <ul class="service-list">
+                        <li>Architectural coordination</li>
+                        <li>CAD drafting &amp; 3D modeling</li>
+                        <li>BIM coordination</li>
+                        <li>Construction documents</li>
+                        <li>As-built documentation</li>
                     </ul>
                 </div>
-            </div>
 
-            <div id="healthcare" class="service-content">
-                <div class="service-detail">
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#127973;</div>
                     <h3>Healthcare Services</h3>
-                    <p>Specialized healthcare back-office support to improve operational efficiency and revenue cycle management.</p>
-                    <ul>
-                        <li>Medical coding and billing support</li>
-                        <li>Healthcare documentation management</li>
+                    <p>Specialized back-office support for operational efficiency and revenue cycle management.</p>
+                    <ul class="service-list">
+                        <li>Medical coding &amp; billing</li>
+                        <li>Documentation management</li>
                         <li>Revenue cycle optimization</li>
-                        <li>Claims processing support</li>
-                        <li>Healthcare operations consulting</li>
-                        <li>Compliance and quality assurance</li>
+                        <li>Claims processing</li>
+                        <li>Compliance &amp; QA</li>
                     </ul>
                 </div>
-            </div>
 
-            <div id="consulting" class="service-content">
-                <div class="service-detail">
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#128188;</div>
                     <h3>Business Consulting</h3>
-                    <p>Strategic business advisory services to optimize operations and accelerate growth.</p>
-                    <ul>
-                        <li>Business strategy and planning</li>
-                        <li>Process optimization and improvement</li>
-                        <li>Project management and oversight</li>
-                        <li>Operational efficiency consulting</li>
-                        <li>Technology advisory and selection</li>
-                        <li>Change management support</li>
+                    <p>Strategic advisory services to optimize operations and accelerate growth.</p>
+                    <ul class="service-list">
+                        <li>Business strategy &amp; planning</li>
+                        <li>Process optimization</li>
+                        <li>Project management</li>
+                        <li>Technology advisory</li>
+                        <li>Change management</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-up">
+                    <div class="service-icon">&#128640;</div>
+                    <h3>Delivery Management</h3>
+                    <p>End-to-end project governance and cross-border delivery coordination.</p>
+                    <ul class="service-list">
+                        <li>Client relationship management</li>
+                        <li>Project governance</li>
+                        <li>Cross-border coordination</li>
+                        <li>Quality assurance</li>
+                        <li>Operational oversight</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-info">
-                <p><strong>Tarang Consulting Services</strong></p>
-                <p>Email: <a href="mailto:tarangconsultingservices@gmail.com">tarangconsultingservices@gmail.com</a></p>
-                <p style="margin-top: 30px; font-size: 1em; opacity: 0.9;">Ready to discuss your project? Get in touch with us today.</p>
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="wrap">
+            <div class="section-label">Get in Touch</div>
+            <div class="section-title">Let's Discuss Your Project</div>
+            <div class="contact-layout">
+                <div class="fade-up">
+                    <div class="contact-text">
+                        <p>Ready to explore how Tarang can support your business? Reach out and we'll connect with you to discuss your requirements, timelines, and how we can help.</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">&#9993;</div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:tarangconsultingservices@gmail.com">tarangconsultingservices@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">&#128205;</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Tega Cay, South Carolina, USA</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">&#127760;</div>
+                        <div>
+                            <h4>Delivery</h4>
+                            <p>United States &amp; India (Hyderabad)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-box fade-up">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" required placeholder="you@company.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" name="subject" placeholder="How can we help?">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="message" required placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message &#8594;</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 Tarang Consulting Services. All rights reserved.</p>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">Tarang Consulting Services</div>
+                <p>&copy; 2025 Tarang Consulting Services LLC. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </footer>
 
     <script>
-        function showService(serviceId) {
-            // Hide all service contents
-            const contents = document.querySelectorAll('.service-content');
-            contents.forEach(content => content.classList.remove('active'));
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(button => button.classList.remove('active'));
-            
-            // Show selected service
-            document.getElementById(serviceId).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-        
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Close mobile menu on link click
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.querySelector('nav ul').classList.remove('open');
+            });
+        });
+
+        // Contact form handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const subject = encodeURIComponent(data.get('subject') || 'Project Inquiry');
+            const body = encodeURIComponent(
+                `Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\n${data.get('message')}`
+            );
+            window.location.href = `mailto:tarangconsultingservices@gmail.com?subject=${subject}&body=${body}`;
         }
     </script>
+
 </body>
 </html>
