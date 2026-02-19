@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarang Consulting Services</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔷</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        nav {
+            background: #0f1f3d;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        nav a:hover {
+            color: #4a9eff;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: white;
+            color: #1e3c72;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: slideUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        .cta-button:hover {
+            background: #4a9eff;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            padding: 80px 20px;
+            min-height: 400px;
+        }
+        
+        section h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            color: #1e3c72;
+            text-align: center;
+        }
+        
+        .about {
+            background: #f8f9fa;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            font-size: 1.15em;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .tab-button {
+            padding: 12px 25px;
+            background: #e9ecef;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .tab-button:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+        
+        .tab-button.active {
+            background: #1e3c72;
+            color: white;
+        }
+        
+        .service-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .service-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .service-detail {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-detail h3 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .service-detail p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        
+        .service-detail ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-detail li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.05em;
+            color: #555;
+        }
+        
+        .service-detail li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        
+        .contact-info p {
+            margin: 15px 0;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            transition: border-color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            border-bottom-color: white;
+        }
+        
+        footer {
+            background: #0f1f3d;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .service-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Tarang</div>
+            <ul>
+                <li><a onclick="scrollToSection('home')">Home</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('services')">Services</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h1>Tarang Consulting Services</h1>
+        <p>Global Professional Services & Technology Solutions</p>
+        <a href="#services" class="cta-button" onclick="scrollToSection('services')">Explore Our Services</a>
+    </header>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>Tarang Consulting Services is a US-based professional services company delivering scalable, compliant, and cost-efficient solutions across technology, spatial data, healthcare, and design coordination.</p>
+                <p>We combine local expertise with global delivery capabilities to support complex projects with regulatory discipline and operational excellence. Our remote-first approach enables us to serve clients worldwide while maintaining the highest standards of quality and professionalism.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            
+            <div class="service-tabs">
+                <button class="tab-button active" onclick="showService('it')">IT Services</button>
+                <button class="tab-button" onclick="showService('gis')">GIS & Spatial Data</button>
+                <button class="tab-button" onclick="showService('design')">Design Coordination</button>
+                <button class="tab-button" onclick="showService('healthcare')">Healthcare</button>
+                <button class="tab-button" onclick="showService('consulting')">Business Consulting</button>
+            </div>
+
+            <div id="it" class="service-content active">
+                <div class="service-detail">
+                    <h3>Information Technology Services</h3>
+                    <p>Comprehensive IT solutions designed to transform your business operations and drive digital innovation.</p>
+                    <ul>
+                        <li>Custom software development and solutions</li>
+                        <li>IT consulting and strategic planning</li>
+                        <li>System integration and implementation</li>
+                        <li>Technology infrastructure support</li>
+                        <li>Digital transformation consulting</li>
+                        <li>Cloud solutions and migration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="gis" class="service-content">
+                <div class="service-detail">
+                    <h3>GIS & Spatial Data Services</h3>
+                    <p>Advanced geographic information systems and spatial analysis to unlock location intelligence for your organization.</p>
+                    <ul>
+                        <li>Geographic Information Systems consulting</li>
+                        <li>Spatial data analysis and visualization</li>
+                        <li>Custom GIS application development</li>
+                        <li>Geospatial data management and integration</li>
+                        <li>Mapping and cartography services</li>
+                        <li>Location-based analytics solutions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="design" class="service-content">
+                <div class="service-detail">
+                    <h3>Design Coordination & Drafting</h3>
+                    <p>Professional design support and coordination services to streamline your architectural and engineering projects.</p>
+                    <ul>
+                        <li>Architectural coordination and support</li>
+                        <li>Technical design documentation</li>
+                        <li>CAD drafting and 3D modeling</li>
+                        <li>BIM coordination assistance</li>
+                        <li>Construction document preparation</li>
+                        <li>As-built documentation services</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="healthcare" class="service-content">
+                <div class="service-detail">
+                    <h3>Healthcare Services</h3>
+                    <p>Specialized healthcare back-office support to improve operational efficiency and revenue cycle management.</p>
+                    <ul>
+                        <li>Medical coding and billing support</li>
+                        <li>Healthcare documentation management</li>
+                        <li>Revenue cycle optimization</li>
+                        <li>Claims processing support</li>
+                        <li>Healthcare operations consulting</li>
+                        <li>Compliance and quality assurance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="consulting" class="service-content">
+                <div class="service-detail">
+                    <h3>Business Consulting</h3>
+                    <p>Strategic business advisory services to optimize operations and accelerate growth.</p>
+                    <ul>
+                        <li>Business strategy and planning</li>
+                        <li>Process optimization and improvement</li>
+                        <li>Project management and oversight</li>
+                        <li>Operational efficiency consulting</li>
+                        <li>Technology advisory and selection</li>
+                        <li>Change management support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><strong>Tarang Consulting Services</strong></p>
+                <p>Email: <a href="mailto:tarangconsultingservices@gmail.com">tarangconsultingservices@gmail.com</a></p>
+                <p style="margin-top: 30px; font-size: 1em; opacity: 0.9;">Ready to discuss your project? Get in touch with us today.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tarang Consulting Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showService(serviceId) {
+            // Hide all service contents
+            const contents = document.querySelectorAll('.service-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected service
+            document.getElementById(serviceId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
